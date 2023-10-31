@@ -2847,6 +2847,8 @@ input, select, textarea {
 			#header .logo > * {
 				display: inline-block;
 				vertical-align: middle;
+				width: 250px;
+				margin: 20px;
 			}
 
 			#header .logo .symbol {
