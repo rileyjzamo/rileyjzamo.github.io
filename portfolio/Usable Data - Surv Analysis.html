@@ -11,7 +11,7 @@
 
 <meta name="author" content="Riley Zamora" />
 
-<meta name="date" content="2023-10-12" />
+<meta name="date" content="2023-11-02" />
 
 <title>Prepare Data for Survival Analysis</title>
 
@@ -1593,13 +1593,14 @@ border-radius: 0px;
 
 <h1 class="title toc-ignore">Prepare Data for Survival Analysis</h1>
 <h4 class="author">Riley Zamora</h4>
-<h4 class="date">2023-10-12</h4>
+<h4 class="date">2023-11-02</h4>
 
 </div>
 
 
 <div id="abstract" class="section level1">
 <h1>Abstract</h1>
+<p>These are the questions I was initially tasked with.</p>
 <ol style="list-style-type: decimal">
 <li>use either regression or your avg decline data to show list of at
 risk active dealers.<br />
@@ -2011,11 +2012,13 @@ the data.</p>
   filter(status == 0) |&gt; 
   distinct(source_id))</code></pre>
 <pre><code>## [1] 955</code></pre>
-<p>Great we have the same amount of active and inactive dealers. Now we
-need to create a time stamp that we want to use for our analysis. We can
-arrange our data to have a time stamp of how many weeks each dealer
-“survived” and we will create a count variable for how many cars each
-dealer looked up during their “lifetime”.</p>
+<p>Great we have the same amount of active and inactive dealers.
+<strong>I believe this is not a task of regression but actually a task
+of survival analysis.</strong> This being noted, we need to create a
+time stamp that we want to use for our analysis. We can arrange our data
+to have a time stamp of how many weeks each dealer “survived” and we
+will create a count variable for how many cars each dealer looked up
+during their “lifetime”.</p>
 <pre class="r"><code>vincount_data &lt;- joined_data |&gt; 
   group_by(source_id) |&gt; 
   summarise(count = n_distinct(vin))</code></pre>
@@ -2045,7 +2048,7 @@ nrow(surv_joined |&gt;
        filter(status == 0))</code></pre>
 <pre><code>## [1] 955</code></pre>
 <p>Lets export this final df.</p>
-<pre class="r"><code>write.csv(surv_joined, file = &quot;Survival Data.csv&quot;)</code></pre>
+<pre class="r"><code>##write.csv(surv_joined, file = &quot;Survival Data.csv&quot;)</code></pre>
 </div>
 
 
